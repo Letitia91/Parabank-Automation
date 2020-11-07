@@ -1,7 +1,7 @@
-package p4bAutomation.Pages;
+package parabankAutomation.Pages;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static p4bAutomation.Tests.BaseTest.*;
+import static parabankAutomation.Tests.BaseTest.*;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import p4bAutomation.Tests.BaseTest;
+import parabankAutomation.Tests.BaseTest;
 
 public class BasePage {
 

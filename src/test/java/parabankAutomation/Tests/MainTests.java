@@ -1,7 +1,6 @@
-package p4bAutomation.Tests;
+package parabankAutomation.Tests;
 
 import org.junit.Test;
-import p4bAutomation.Pages.MainPage;
 
 public class MainTests extends BaseTest {
 

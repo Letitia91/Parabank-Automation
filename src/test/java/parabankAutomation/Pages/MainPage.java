@@ -1,4 +1,4 @@
-package p4bAutomation.Pages;
+package parabankAutomation.Pages;
 
 import org.openqa.selenium.By;
 
