@@ -7,6 +7,7 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import parabankAutomation.pages.BasePage;
 
 public class BaseTest {
 
@@ -17,13 +18,16 @@ public class BaseTest {
   @BeforeClass
   public static void setupClass() {
     WebDriverManager.chromedriver().setup();
-    System.setProperty("webdriver.chrome.silentOutput", "true"); // thi will clear the warnings
+    System.setProperty("webdriver.chrome.silentOutput", "true"); // this will clear the warnings
   }
 
   @Before
   public void setupTest() {
     chromeDriver = new ChromeDriver();
     wait = new WebDriverWait(chromeDriver, 10);
+    chromeDriver.get(PARABANK_WEBSITE);
+    chromeDriver.manage().window().maximize();
+    BasePage.checkIfUrlContains(PARABANK_WEBSITE);
   }
 
   @After

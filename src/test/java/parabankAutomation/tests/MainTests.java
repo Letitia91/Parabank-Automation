@@ -1,12 +1,43 @@
 package parabankAutomation.tests;
 
+import static parabankAutomation.pages.MainPage.*;
+
 import org.junit.Test;
-import parabankAutomation.services.CustomerService;
 
 public class MainTests extends BaseTest {
 
   @Test
-  public void goToCareerPage() {
-    System.out.println(CustomerService.getDefaultCostumer().getAddress());
+  public void createDefaultAccount() {
+    createDefaultAccountMethod();
+  }
+
+  @Test
+  public void createDoubleDefaultAccount() {
+    createDoubleDefaultAccountMethod();
+  }
+
+  @Test
+  public void createRandomAccount() {
+    createRandomAccountMethod();
+  }
+
+  @Test
+  public void loginWithCorrectUser() {
+    loginWithCorrectUserMethod();
+  }
+
+  @Test
+  public void loginWithIncorrectUser() {
+    loginWithIncorrectUserMethod();
+  }
+
+  @Test
+  public void passwordsMismatch() {
+    passwordAndConfirmNotTheSameMethod();
+  }
+
+  @Test
+  public void forgotLoginDetails() {
+    forgotLoginMethod();
   }
 }
