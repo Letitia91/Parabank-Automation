@@ -48,6 +48,7 @@ The packages are named as follows:
 The project is divided in UI acceptance test and API tests. 
 
 ## Reporting
+* TBD
 
 ## Project status
 * initial phase: in progress
