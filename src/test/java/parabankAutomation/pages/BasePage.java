@@ -1,24 +1,24 @@
 package parabankAutomation.pages;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
-import static parabankAutomation.pages.MainPage.*;
-import static parabankAutomation.tests.BaseTest.*;
+import static utils.WebDriverFactoryStaticThreadLocal.getDriver;
 
 import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.*;
 import org.testng.Assert;
-import parabankAutomation.services.CustomerService;
 import parabankAutomation.tests.BaseTest;
 
-public class BasePage {
+public class BasePage extends BaseTest {
 
-  public static void fillInput(By byObject, String text) {
+  public void fillInput(By byObject, String text) {
+    waitUntilPageIsReady();
     wait.until(elementToBeClickable(byObject));
-    chromeDriver.findElement(byObject).sendKeys(text);
+    getDriver().findElement(byObject).sendKeys(text);
   }
 
-  public static void clickOnButton(By byObject) {
+  public void clickOnButton(By byObject) {
+    waitUntilPageIsReady();
     wait.withTimeout(Duration.ofSeconds(10));
     wait.ignoring(ElementClickInterceptedException.class);
     wait.ignoring(StaleElementReferenceException.class);
@@ -28,37 +28,36 @@ public class BasePage {
                 .executeScript("return document.readyState")
                 .equals("complete"));
     wait.until(elementToBeClickable(byObject));
-    chromeDriver.findElement(byObject).click();
-    waitUntilPageIsReady();
+    getDriver().findElement(byObject).click();
   }
 
-  public static void colorAndClickOnThePageElement(By Object) {
+  public void colorAndClickOnThePageElement(By Object) {
     wait.withTimeout(Duration.ofSeconds(10));
     clickOnButton(Object);
   }
 
-  public static List<WebElement> getListWithByObject(By selector) {
+  public List<WebElement> getListWithByObject(By selector) {
     wait.until(elementToBeClickable(selector));
-    return chromeDriver.findElements(selector);
+    return getDriver().findElements(selector);
   }
 
-  public static void checkIfUrlContains(String url) {
+  public void checkIfUrlContains(String url) {
     waitUntilPageIsReady();
     wait.withTimeout(Duration.ofSeconds(3));
-    wait.until(driver -> BaseTest.chromeDriver.getCurrentUrl().contains(url));
-    boolean contains = chromeDriver.getCurrentUrl().contains(url);
+    wait.until(driver -> getDriver().getCurrentUrl().contains(url));
+    boolean contains = getDriver().getCurrentUrl().contains(url);
     Assert.assertTrue(contains, "The url does not contain: " + contains);
   }
 
-  public static void checkIfUrlContentEquals(String url) {
+  public void checkIfUrlContentEquals(String url) {
     waitUntilPageIsReady();
     wait.withTimeout(Duration.ofSeconds(3));
-    wait.until(driver -> BaseTest.chromeDriver.getCurrentUrl().equals(url));
-    boolean equals = chromeDriver.getCurrentUrl().contentEquals(url);
+    wait.until(driver -> getDriver().getCurrentUrl().equals(url));
+    boolean equals = getDriver().getCurrentUrl().contentEquals(url);
     Assert.assertTrue(equals, "The url is not equal with: " + equals);
   }
 
-  public static void waitUntilPageIsReady() {
+  public void waitUntilPageIsReady() {
     wait.until(
         driver ->
             ((JavascriptExecutor) driver)
@@ -72,48 +71,21 @@ public class BasePage {
    *
    * @param object
    */
-  public static void colorTheElement(final Object object) {
-    JavascriptExecutor js = (JavascriptExecutor) chromeDriver;
+  public void colorTheElement(final Object object) {
+    JavascriptExecutor js = (JavascriptExecutor) getDriver();
     if (object instanceof By) {
       js.executeScript(
-          "arguments[0].style.border='3px solid red'", chromeDriver.findElement((By) object));
+          "arguments[0].style.border='3px solid red'", getDriver().findElement((By) object));
     } else {
       js.executeScript("arguments[0].style.border='3px solid red'", object);
     }
   }
 
-  public static void assertEqualsText(By Object, String expectedResult) {
+  public void assertEqualsText(By Object, String expectedResult) {
+    waitUntilPageIsReady();
     Assert.assertEquals(
-        chromeDriver.findElement(Object).getText(),
+        getDriver().findElement(Object).getText(),
         expectedResult,
-        "The text does not equal" + chromeDriver.findElement(Object).getText() + expectedResult);
-  }
-
-  public static void createDefaultCustomerMethod() {
-    fillInput(firstNameField, CustomerService.getRandomCustomer().firstNameField);
-    fillInput(lastNameField, CustomerService.getRandomCustomer().lastNameField);
-    fillInput(addressField, CustomerService.getRandomCustomer().addressField);
-    fillInput(cityField, CustomerService.getRandomCustomer().cityField);
-    fillInput(stateField, CustomerService.getRandomCustomer().stateField);
-    fillInput(zipCodeField, CustomerService.getRandomCustomer().zipCodeField);
-    fillInput(phoneNumberField, CustomerService.getRandomCustomer().phoneNumberField);
-    fillInput(socialNumberField, CustomerService.getRandomCustomer().socialNumberField);
-    fillInput(userNameField, CustomerService.getRandomCustomer().userNameField);
-    fillInput(passwordField, CustomerService.getRandomCustomer().passwordField);
-    fillInput(confirmField, CustomerService.getDefaultCustomer().confirmField);
-  }
-
-  public static void createRandomCustomerMethod() {
-    fillInput(firstNameField, CustomerService.getDefaultCustomer().firstNameField);
-    fillInput(lastNameField, CustomerService.getDefaultCustomer().lastNameField);
-    fillInput(addressField, CustomerService.getDefaultCustomer().addressField);
-    fillInput(cityField, CustomerService.getDefaultCustomer().cityField);
-    fillInput(stateField, CustomerService.getDefaultCustomer().stateField);
-    fillInput(zipCodeField, CustomerService.getDefaultCustomer().zipCodeField);
-    fillInput(phoneNumberField, CustomerService.getDefaultCustomer().phoneNumberField);
-    fillInput(socialNumberField, CustomerService.getDefaultCustomer().socialNumberField);
-    fillInput(userNameField, CustomerService.getDefaultCustomer().userNameField);
-    fillInput(passwordField, CustomerService.getDefaultCustomer().passwordField);
-    fillInput(confirmField, CustomerService.getDefaultCustomer().confirmField);
+        "The text does not equal" + getDriver().findElement(Object).getText() + expectedResult);
   }
 }

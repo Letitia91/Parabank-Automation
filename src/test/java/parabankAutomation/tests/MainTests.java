@@ -1,43 +1,22 @@
 package parabankAutomation.tests;
 
-import static parabankAutomation.pages.MainPage.*;
-
-import org.junit.Test;
+import org.testng.annotations.Test;
+import parabankAutomation.steps.MainPageSteps;
+import parabankAutomation.steps.RegisterSteps;
 
 public class MainTests extends BaseTest {
-
-  @Test
-  public void createDefaultAccount() {
-    createDefaultAccountMethod();
-  }
-
-  @Test
-  public void createDoubleDefaultAccount() {
-    createDoubleDefaultAccountMethod();
-  }
-
-  @Test
-  public void createRandomAccount() {
-    createRandomAccountMethod();
-  }
+  MainPageSteps mainPageSteps = new MainPageSteps();
+  RegisterSteps registerSteps = new RegisterSteps();
 
   @Test
   public void loginWithCorrectUser() {
-    loginWithCorrectUserMethod();
+    mainPageSteps.loginWithCorrectUserMethod();
+    mainPageSteps.clickOnLoginButton();
+    registerSteps.clickOnLogoutButton();
   }
 
   @Test
   public void loginWithIncorrectUser() {
-    loginWithIncorrectUserMethod();
-  }
-
-  @Test
-  public void passwordsMismatch() {
-    passwordAndConfirmNotTheSameMethod();
-  }
-
-  @Test
-  public void forgotLoginDetails() {
-    forgotLoginMethod();
+    mainPageSteps.loginWithIncorrectUserMethod();
   }
 }

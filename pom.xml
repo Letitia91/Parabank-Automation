@@ -9,7 +9,6 @@
     <properties>
         <slf4j.version>1.7.25</slf4j.version>
         <logback.version>1.2.3</logback.version>
-        <junit.version>4.12</junit.version>
         <selenium.version>3.141.59</selenium.version>
         <phantomjsdriver.version>1.4.3</phantomjsdriver.version>
         <webdrivermanager.version>3.8.1</webdrivermanager.version>
@@ -30,6 +29,7 @@
         <spotless.plugin.version>1.14.0</spotless.plugin.version>
         <lombok.version>1.18.16</lombok.version>
         <commons-lang3.version>3.11</commons-lang3.version>
+        <javafaker.version>1.0.2</javafaker.version>
     </properties>
 
     <dependencyManagement>
@@ -80,12 +80,6 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
@@ -135,6 +129,14 @@
             <version>${commons-lang3.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.javafaker/javafaker -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+        </dependency>
+
 
     </dependencies>
 

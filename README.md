@@ -5,6 +5,13 @@
 ParaBank is a demo site used for demonstration of Parasoft software solutions.
 The test automation project for ParaBank is covering UI and API acceptance testing.
 
+## Installation
+* Java
+* Maven
+* Chrome
+* Lombok Plugin
+* Recommendation: IntelliJ IDEA (programming environment)
+
 ## Concepts Included
 * OOP
 * Parallel test runs
@@ -15,25 +22,27 @@ The test automation project for ParaBank is covering UI and API acceptance testi
 
 ## Tools
 * Maven
-* JUnit
 * TestNG
 * Selenium WebDriver
 * Lombok
 * Spring 
+* WebDriver Manager
 
 ## Requirements
 In order to utilise this project you need to have the following installed locally:
 * Maven 
-* Chrome and Chromedriver (UI tests use Chrome by default, can be changed in the configuration)
 * Java 
 
 ## Usage
 The project is bases on OOP Principles, therefore the Page Objects are separated by the test scripts.
+To facilitate a lean process, two "bases" have been created:
+* BasePage which contains the utility methods
+* BaseTests which contains the general setup for the classes and for the tests
+
 The packages are named as follows:
 
 **pages**
-1. BasePage (contains the utility methods)
-2. MainPage (contains the main page selectors and behaviour)
+1. MainPage (contains the main page selectors)
 
 **pojos** (created with *Lombok Tool*)
 1. Customer
@@ -41,9 +50,11 @@ The packages are named as follows:
 **services** (contains the utility methods for the **pojos** package )
 1. CustomerServices
 
-**tests**
-1. BaseTests (contains the general setup for the classes and for the tests)
-2. MainTests (contains the login tests)
+**steps** (contains the methods specific for every page)
+1. Forgot login steps
+
+**tests** (contains the tests specific for every page)
+1. MainTests
 
 The project is divided in UI acceptance test and API tests. 
 

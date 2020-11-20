@@ -6,15 +6,15 @@ import lombok.Data;
 @Data
 @Builder(builderClassName = "CustomerBuilder", toBuilder = true)
 public class Customer {
-  public String firstNameField;
-  public String lastNameField;
-  public String addressField;
-  public String cityField;
-  public String stateField;
-  public String zipCodeField;
-  public String phoneNumberField;
-  public String socialNumberField;
-  public String userNameField;
-  public String passwordField;
-  public String confirmField;
+  String firstNameField;
+  String lastNameField;
+  String addressField;
+  String cityField;
+  String stateField;
+  String zipCodeField;
+  String phoneNumberField;
+  String socialNumberField;
+  String userNameField;
+  String passwordField;
+  String confirmField;
 }
